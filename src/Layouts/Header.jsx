@@ -9,9 +9,9 @@ export default function Header() {
       <nav>
         <ul>
           <div className="logo">
-            <NavLink to="/">
+            <Link to="/">
               <img src={mainLogo} alt="" className="logo-img" />
-            </NavLink>
+            </Link>
           </div>
           <div className="nav-links">
             <i class="material-icons">place</i>
@@ -21,28 +21,30 @@ export default function Header() {
             </div>
           </div>
           <div className="search">
-            <input type="search" placeholder="Seach Amazon" />
+            <input type="text" placeholder="Seach Amazon" />
             <div>
               <i class="material-icons">search</i>
             </div>
           </div>
-          <NavLink>
+          <Link to="/sign-in">
             <div div className="nav-links-text">
               <span>Hello,</span>
               <h4>Sign In</h4>
             </div>
-          </NavLink>
-          <div className="nav-links-text">
-            <span>Returns</span>
-            <h4>& Orders</h4>
-          </div>
-          <NavLink>
+          </Link>
+          <Link to="/orders-and-returns">
+            <div className="nav-links-text">
+              <span>Returns</span>
+              <h4>& Orders</h4>
+            </div>
+          </Link>
+          <Link to="/cart">
             <div className="nav-links">
               <h4 className="items-no">0</h4>
               <span class="material-icons cart">shopping_cart</span>
               <h4>Cart</h4>
             </div>
-          </NavLink>
+          </Link>
           {/* <li>
             <NavLink activeClassName="active" to="/">
               {" "}

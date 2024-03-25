@@ -6,8 +6,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './routes/Home';
-import Products from './routes/Products';
+import Products from './Layouts/Products';
 import ProductDetails from './components/ProductDetails';
+import SignInPage from './routes/SignInPage';
+import OrdersReturns from './routes/OrdersReturns';
+import Cart from './routes/Cart';
 
 
 const router = createBrowserRouter([
@@ -22,6 +25,18 @@ const router = createBrowserRouter([
  {
   path:"/products/:id",
   element:<ProductDetails />
+ },
+ {
+  path:"/sign-in",
+  element: <SignInPage />
+ },
+ {
+  path:'/orders-and-returns',
+  element:<OrdersReturns />
+ },
+ {
+  path:'/cart',
+  element:<Cart />
  }
 ])
 
