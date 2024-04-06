@@ -8,6 +8,19 @@
   /* overflow-x: hidden; */
 }
 
+.error{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  height: 100vh;
+}
+
+.error img{
+  width: 40%;
+  object-fit: fill;
+}
+
 a{
   text-decoration: none;
   color: black;
@@ -95,12 +108,10 @@ main{
   left: 50%;
   top: 50%;
   transform: translate(-50%,-70%);
- 
-
 }
 
 .form{
-  width: 297px;
+  width: 310px;
   padding: 20px 26px;
   display: flex;
   flex-direction: column;
@@ -112,4 +123,58 @@ main{
   object-fit: contain;
   width: 165px;
   margin-bottom: -25px;
+}
+
+.form input, .form button{
+  padding: 3.5px 5.5px;
+  margin-bottom: 6.6px;
+}
+
+.form input:focus{
+  outline-color: rgba(0, 170, 255, 0.3);
+}
+
+.form button{
+  border: 1px transparent solid;
+  background-color: hsl(50, 100%, 54%);
+  border-radius: 6px;
+  padding: 5px;
+}
+
+.form button:hover{
+  background-color: rgb(241, 205, 25);
+  cursor: pointer;
+}
+
+.form p{
+  font-size: .7rem;
+  margin: 10px 2px;
+}
+
+.form p span{
+  color: rgb(0, 136, 255);
+}
+
+.form p span:hover{
+  color: brown;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.or{
+  display: flex;
+  font-size: .7rem;
+  color: #8b8b8b;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.line{
+  background-color: #dddddd;
+  width: 33%;
+  height: 0.11px;
+}
+
+.form a, .form button{
+  width: 100%;
 }
