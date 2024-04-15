@@ -50,12 +50,6 @@ export default function Header() {
                 <i class="material-icons">search</i>
               </div>
             </div>
-            {auth ? (
-              <div div className="nav-links-text" onClick={handleLogOut}>
-                <span>Hello user,</span>
-                <h4>log-Out?</h4>
-              </div>
-            ) : (
               <Link to="/sign-in">
                 <div div className="nav-links-text">
                   <span>
