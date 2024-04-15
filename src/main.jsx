@@ -10,8 +10,9 @@ import OrdersReturns from "./routes/OrdersReturns";
 import Cart from "./routes/Cart";
 import CreateAccout from "./routes/CreateAccout";
 import ErrorPage from "./routes/ErrorPage";
-import { AuthContexProvider } from "./Contexts/Contexts";
+import { AuthContexProvider } from "./Contexts/LogInContext";
 import Header from "./Layouts/Header";
+import { ProductsContextProvider } from "./Contexts/ProductsContext";
 
 const router = createBrowserRouter([
   {
@@ -48,11 +49,14 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContexProvider>
-      <RouterProvider router={router}>
-        <Header></Header>
-        <SignInPage />
-        <CreateAccout />
-      </RouterProvider>
+      <ProductsContextProvider>
+        <RouterProvider router={router}>
+          <Header></Header>
+          <Home></Home>
+          <SignInPage />
+          <CreateAccout />
+        </RouterProvider>
+      </ProductsContextProvider>
     </AuthContexProvider>
   </React.StrictMode>
 );

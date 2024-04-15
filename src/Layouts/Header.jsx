@@ -1,32 +1,36 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.css";
 import mainLogo from "./amazon-logo-free-png.webp";
-import { AuthContex } from "../Contexts/Contexts";
+import { AuthContex } from "../Contexts/LogInContext";
 import { useContext } from "react";
+import { ProductsContext } from "../Contexts/ProductsContext";
+import { auth, signOut } from "../Firebase/firebase";
 
 export default function Header() {
   const {
-    auth,
-    setAuth,
+    loggedIn,
     setValidity,
-    validity,
     setEmail,
     setPassword,
     setName,
   } = useContext(AuthContex);
 
+  const { count } = useContext(ProductsContext);
+
   const handleLogOut = () => {
-    setValidity(()=>null);
-    setAuth((prev) => !prev);
-    setEmail("");
-    setPassword("");
-    setName("");
-    // localStorage.removeItem('valid');
-    // dispatch({type:'change_validity'})
+    signOut(auth)
+      .then(() => {
+        setValidity(() => null);
+        setEmail("");
+        setPassword("");
+        setName("");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
   };
 
-  console.log(validity);
   return (
     <>
       <header className="header">
@@ -38,7 +42,7 @@ export default function Header() {
               </Link>
             </div>
             <div className="nav-links">
-              <i class="material-icons">place</i>
+              <i className="material-icons">place</i>
               <div>
                 <span>Deliver to</span>
                 <h4>South Africa</h4>
@@ -47,9 +51,16 @@ export default function Header() {
             <div className="search">
               <input type="text" placeholder="Seach Amazon" />
               <div>
-                <i class="material-icons">search</i>
+                <i className="material-icons">search</i>
               </div>
             </div>
+            {loggedIn ? (
+              <div div className="nav-links-text" onClick={handleLogOut}>
+                <span>
+                  Hello,<h4>User, log-out?</h4>
+                </span>
+              </div>
+            ) : (
               <Link to="/sign-in">
                 <div div className="nav-links-text">
                   <span>
@@ -66,8 +77,8 @@ export default function Header() {
             </Link>
             <Link to="/cart">
               <div className="nav-links">
-                <h4 className="items-no">0</h4>
-                <span class="material-icons cart">shopping_cart</span>
+                <h4 className="items-no">{count}</h4>
+                <span className="material-icons cart">shopping_cart</span>
                 <h4>Cart</h4>
               </div>
             </Link>

@@ -3,7 +3,7 @@ import Header from '../Layouts/Header'
 export default function Cart() {
   return (
     <div>
-       <Header />
+      <Header />
       <main>
         <div>
           <h2>your cart</h2>

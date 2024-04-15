@@ -94,6 +94,19 @@ main{
   text-align: center;
 }
 
+.add_product{
+  border: 1px transparent solid;
+  background-color: hsl(50, 100%, 54%);
+  border-radius: 6px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.add_product:hover{
+  background-color: rgb(241, 205, 25);
+  cursor: pointer;
+}
+
 .product .title{
   font-size: 20px;
   font-weight: 600;

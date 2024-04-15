@@ -1,5 +1,7 @@
 import Header from "../Layouts/Header";
 import Products from "../Layouts/Products";
+
+
 export default function Home() {
   return (
     <>
