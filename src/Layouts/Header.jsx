@@ -54,15 +54,16 @@ export default function Header() {
                 <i className="material-icons">search</i>
               </div>
             </div>
-            {loggedIn ? (
-              <div div className="nav-links-text" onClick={handleLogOut}>
+            {loggedIn && (
+              <div className="nav-links-text" onClick={handleLogOut}>
                 <span>
                   Hello,<h4>User, log-out?</h4>
                 </span>
               </div>
-            ) : (
+            )  }
+            {!loggedIn &&  (
               <Link to="/sign-in">
-                <div div className="nav-links-text">
+                <div className="nav-links-text">
                   <span>
                     Hello,<h4>Sign In</h4>
                   </span>

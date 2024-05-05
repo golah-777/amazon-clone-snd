@@ -13,10 +13,8 @@ export const AuthContexProvider = ({ children }) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        console.log('hey')
         setLoggedIn(true)
       } else {
-        console.log('bye')
         setLoggedIn(false)
       }
     });

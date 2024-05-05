@@ -1,27 +1,83 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from "react";
+import { ProductsContext } from "../Contexts/ProductsContext";
 
-export default function OrderedItems() {
+
+export default function OrderedItems({
+  id,
+  title,
+  img,
+  price,
+  border,
+  display,
+  variant,
+  background,
+  quantity,
+}) {
+  const { deleteItem, decreamentQrty, increamentQrty, setSubTotalP, state } =
+    useContext(ProductsContext);
+  const [itemPrice, setPrice] = useState(price);
+
+  useEffect(() => {
+    return () => {
+      setTimeout(() => {
+        const prices = document.querySelectorAll(".price");
+        let newPrice = 0;
+        prices.forEach((price) => (newPrice += parseInt(price.textContent)));
+        setSubTotalP(newPrice);
+      }, 100);
+    };
+  }, []);
+
+  const handleIncrement = () => increamentQrty(id);
+  const handleDecreament = () => decreamentQrty(id);
+  const handleDelete = () => deleteItem(id);
+
   return (
-    <div>
-            <div className="product">
+    <div className="product" id={id} style={{ border }}>
+      <div className="aa">
+        <img src={img} alt="" />
+      </div>
+      <div className="bb">
+        <span>{title}</span>
+        <span style={{ color: "green", margin: "5px 0px" }}>In stock</span>
         <div>
-          <img src={img} alt="" />
-        </div>
-        <div>
-          <div className="title">
-            <span>{title}</span>
-          </div>
-          <div className="rating">
-            <span></span>
-          </div>
-          <div className="money">
-            <span>${price}</span>
-          </div>
-          <div className="shipment">
-            <button onClick={handleAddToCart} className="add_product">Add To Cart</button>
+          <div className="qrty_delete">
+            <span className="vv">Qrty:</span>
+            <div className={`qrty `} style={{ background }}>
+              <div
+                className="minus"
+                onClick={handleDecreament}
+                style={{ display }}
+              >
+                <span className="material-icons">remove</span>
+              </div>
+              <div className={`no_qrty ${variant}`}>
+                <span className="qrty_value"> {quantity} </span>
+                {/**/}
+              </div>
+              <div
+                className="plus"
+                onClick={handleIncrement}
+                style={{ display }}
+              >
+                <span className="material-icons">add</span>
+              </div>
+            </div>
+            <span
+              style={{ color: "red", cursor: "pointer" }}
+              onClick={handleDelete}
+            >
+              {" "}
+              delete item
+            </span>
           </div>
         </div>
       </div>
+      <div>
+        <strong>$</strong>
+        <strong className="price">{itemPrice}</strong>
+        {/*  */}
+      </div>
     </div>
-  )
+  );
 }

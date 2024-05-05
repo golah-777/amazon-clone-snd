@@ -13,6 +13,7 @@ import ErrorPage from "./routes/ErrorPage";
 import { AuthContexProvider } from "./Contexts/LogInContext";
 import Header from "./Layouts/Header";
 import { ProductsContextProvider } from "./Contexts/ProductsContext";
+import CheckOut from "./routes/CheckOut";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
     path: "/register",
     element: <CreateAccout />,
   },
+  {
+    path:"/checkoutPage",
+    element:<CheckOut></CheckOut>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
