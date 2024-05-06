@@ -13,11 +13,12 @@ export default function OrderedItems({
   background,
   quantity,
 }) {
-  const { deleteItem, decreamentQrty, increamentQrty, setSubTotalP, state } =
+  const { deleteItem, decreamentQrty, increamentQrty, setSubTotalP } =
     useContext(ProductsContext);
   const [itemPrice, setPrice] = useState(price);
 
   useEffect(() => {
+    setPrice(price * quantity)
     return () => {
       setTimeout(() => {
         const prices = document.querySelectorAll(".price");
@@ -26,7 +27,7 @@ export default function OrderedItems({
         setSubTotalP(newPrice);
       }, 100);
     };
-  }, []);
+  }, [price, quantity]);
 
   const handleIncrement = () => increamentQrty(id);
   const handleDecreament = () => decreamentQrty(id);
