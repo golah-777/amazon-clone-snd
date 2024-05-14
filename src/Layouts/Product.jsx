@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProductsContext } from "../Contexts/ProductsContext";
+import { AuthContex } from "../Contexts/LogInContext";
 export default function Product({ id, title, img, price ,qrty}) {
   const { addToCart } = useContext(ProductsContext);
+  const {user}= useContext(AuthContex)
   
   const handleAddToCart = () => {
-    addToCart(id, title, img, JSON.parse(price) ,JSON.parse(qrty));
+    addToCart(id, title, img, JSON.parse(price) ,JSON.parse(qrty), user);
   };
   return (
     <>

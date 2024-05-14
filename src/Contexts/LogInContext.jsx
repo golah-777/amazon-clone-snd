@@ -8,17 +8,23 @@ export const AuthContexProvider = ({ children }) => {
   const [name, setName] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [validity, setValidity] = useState(null);
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
         setLoggedIn(true)
+        setUser(uid)
+        
       } else {
         setLoggedIn(false)
+        setUser(null)
       }
     });
   });
+
+
 
   return (
     <AuthContex.Provider
@@ -32,6 +38,7 @@ export const AuthContexProvider = ({ children }) => {
         setName,
         validity,
         setValidity,
+        user
       }}
     >
       {children}

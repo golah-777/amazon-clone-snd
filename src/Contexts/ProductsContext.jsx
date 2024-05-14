@@ -1,5 +1,7 @@
 import { getItem } from "localforage";
 import React, { createContext, useEffect, useReducer, useState } from "react";
+import { collection, addDoc, db } from "../Firebase/firebase";
+import { json } from "react-router-dom";
 
 export const ProductsContext = createContext();
 
@@ -68,7 +70,7 @@ export const ProductsContextProvider = ({ children }) => {
   });
 
   const [state, dispatch] = useReducer(reducer, initialStates);
-  const addToCart = (id, title, img, price, qrty) => {
+  const addToCart = async (id, title, img, price, qrty, user) => {
     dispatch({
       type: Actions.AddToCart,
       id: id,
@@ -77,6 +79,18 @@ export const ProductsContextProvider = ({ children }) => {
       price: price,
       qrty: qrty,
     });
+
+    console.log(user)
+
+    try {
+      const docRef = await addDoc(collection(db,'users', {user}), {
+        iteems:state
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+    
   };
 
   const increamentQrty = (id, qrty) => {
@@ -101,7 +115,7 @@ export const ProductsContextProvider = ({ children }) => {
         decreamentQrty,
         increamentQrty,
         setSubTotalP,
-        subTotalPrice
+        subTotalPrice,
       }}
     >
       {children}
